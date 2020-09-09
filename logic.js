@@ -24,14 +24,11 @@ function click(col, row) {
   } else {
     activePlayer = players[0];
   }
-
+// Очень глупый бот
   if (activePlayer === players[1]) {
-    let freeSquares = Array.from(document.getElementsByClassName('free'));
-    if (freeSquares.length > 0) {
-      let bot = freeSquares[Math.floor(Math.random() * Math.floor(freeSquares.length))];
-      click(bot.dataset.row, bot.dataset.col);
-    }
+      setTimeout(botClick, 500);
   }
+// Очень глупый бот
 }
 
 function checkWinner(board) {
@@ -69,4 +66,12 @@ function showDraw() {
   let header = modalEl.getElementsByTagName('h2')[0];
   header.textContent = `🤷‍♀️ Ничья 🤷‍♀️`;
   modalEl.classList.remove('hidden');
+}
+
+function botClick() {
+  let freeSquares = Array.from(document.getElementsByClassName('free'));
+    if (freeSquares.length > 0) {
+      let bot = freeSquares[Math.floor(Math.random() * Math.floor(freeSquares.length))];
+      click(bot.dataset.row, bot.dataset.col);
+    }
 }
