@@ -18,15 +18,15 @@ function startGame() {
 function click(col, row) {
   board[col][row] = activePlayer;
   renderBoard(board);
-  checkWinner(board);
+  let win = checkWinner(board); 
   if (activePlayer === players[0]) {
      activePlayer = players[1];
   } else {
     activePlayer = players[0];
   }
 // Очень глупый бот
-  if (activePlayer === players[1]) {
-      setTimeout(botClick, 500);
+  if (!win && activePlayer === players[1]) {
+    setTimeout(botClick, 300);
   }
 // Очень глупый бот
 }
@@ -57,8 +57,11 @@ function checkWinner(board) {
   if (diagonalToRight === board.length || diagonalToLeft === board.length || horizontal !== 0 || vertical !== 0) {
     let winner = players.findIndex(i => i === activePlayer);
     showWinner(winner);
+    return true;
   } else if (document.getElementsByClassName('free').length === 0) {
     showDraw();
+  } else {
+    return false;
   }
 }
 

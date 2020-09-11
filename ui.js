@@ -23,7 +23,11 @@ boardEl.addEventListener('click', function (event) {
 
 function showWinner(winner) {
   let header = modalEl.getElementsByTagName('h2')[0];
-  header.textContent = `🍾 Победил игрок №${winner + 1}! 🍾`;
+  if (winner === 0) {
+    header.textContent = `🍾 Вы победили! 🍾`;
+  } else {
+    header.textContent = `😱 Вы проиграли 😱`;
+  }
   modalEl.classList.remove('hidden');
 }
 
